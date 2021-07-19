@@ -4,27 +4,27 @@ var chosenXAxis = "poverty";
 var chosenYAxis = "healthcare";
 
 function makeResponsive() {
-    // Select div by id.
+     
     var svgArea = d3.select("#scatter").select("svg");
-    // Clear SVG area if it isn't empty.
+     
     if (!svgArea.empty()) {
         svgArea.remove();
     }
-    //SVG params.
+    //SVG paramaters and margins.
     var svgHeight = window.innerHeight/1.2;
     var svgWidth = window.innerWidth/1.7;
-    // Margins.
+     
     var margin = {
         top: 50,
         right: 50,
         bottom: 100,
         left: 80
     };
-    // Chart area minus margins.
+     
     var chartHeight = svgHeight - margin.top - margin.bottom;
     var chartWidth = svgWidth - margin.left - margin.right;
 
-// Create a function for updating x-scale var upon click.
+ 
 function xScale(data, chosenXAxis, chartWidth) {
     var xLinearScale = d3.scaleLinear()
         .domain([d3.min(data, d => d[chosenXAxis]) * .8,
@@ -32,7 +32,7 @@ function xScale(data, chosenXAxis, chartWidth) {
         .range([0, chartWidth]);
     return xLinearScale;
 }
-// Create a function that updates xAxis var upon click.
+ 
 function renderXAxes(newXScale, xAxis) {
     var bottomAxis = d3.axisBottom(newXScale);
     xAxis.transition()
@@ -40,7 +40,7 @@ function renderXAxes(newXScale, xAxis) {
         .call(bottomAxis);
     return xAxis;
 }
-// Create a function that updates y-scale var upon click.
+ 
 function yScale(data, chosenYAxis, chartHeight) {
     var yLinearScale = d3.scaleLinear()
         .domain([d3.min(data, d => d[chosenYAxis]) * .8,
@@ -48,7 +48,7 @@ function yScale(data, chosenYAxis, chartHeight) {
         .range([chartHeight, 0]);
     return yLinearScale;
 }
-// Crerate a function updates yAxis var upon click on y-axis label.
+ 
 function renderYAxes(newYScale, yAxis) {
     var leftAxis = d3.axisLeft(newYScale);
     yAxis.transition()
@@ -56,7 +56,7 @@ function renderYAxes(newYScale, yAxis) {
         .call(leftAxis);
     return yAxis;
 }
-// Create a function for updating circles group.
+ 
 function renderCircles(circlesGroup, newXScale, newYScale, chosenXAxis, chosenYAxis) {
     circlesGroup.transition()
         .duration(1000)
@@ -64,7 +64,7 @@ function renderCircles(circlesGroup, newXScale, newYScale, chosenXAxis, chosenYA
         .attr("cy", d => newYScale(d[chosenYAxis]));
     return circlesGroup;
 }
-// Create function for updating text in circles group.
+ 
 function renderText(circletextGroup, newXScale, newYScale, chosenXAxis, chosenYAxis) {
     circletextGroup.transition()
         .duration(1000)
@@ -72,7 +72,7 @@ function renderText(circletextGroup, newXScale, newYScale, chosenXAxis, chosenYA
         .attr("y", d => newYScale(d[chosenYAxis]));
     return circletextGroup;
 }
-// Create a function to update circles group with new tooltip and set conditions.
+ 
 function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, textGroup) {
     if (chosenXAxis === "poverty") {
         var xlabel = "Poverty: ";
@@ -104,7 +104,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, textGroup) {
                 return (`${d.state}<hr>${xlabel}${d[chosenXAxis]}%<br>${ylabel}${d[chosenYAxis]}%`);
                 }      
         });
-    // Call toolTip for circles group
+     
     circlesGroup.call(toolTip);
     // Need a  "mouseover" event listener
     circlesGroup
@@ -324,9 +324,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, textGroup) {
         console.log(err);
     });
 }
-// Create even listener for resized window. 
-// When the browser loads, makeResponsive() is called.
+ 
 makeResponsive();
-// When the browser window is resized, responsify() is called.
 d3.select(window).on("resize", makeResponsive);
  
