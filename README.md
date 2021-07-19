@@ -1,4 +1,4 @@
-Healthcare vs. Poverty or Smokers vs. Age.
+## Healthcare vs. Poverty or Smokers vs. Age.
 
 ## Background
 
