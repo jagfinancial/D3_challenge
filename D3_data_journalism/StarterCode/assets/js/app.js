@@ -92,7 +92,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, textGroup) {
     } else {
         var ylabel = "Obesity: "
     }
-    // Create tooltip variable.
+// Incorporate D3-tip.
     var toolTip = d3.tip()
         .offset([120, -60])
         .attr("class", "d3-tip")
@@ -135,7 +135,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, textGroup) {
     .attr("width", svgWidth)
     .attr("height", svgHeight);
     
-    // Pull in the data from data.csv by using the d3.csv function.
+// Pull in the data from data.csv by using the d3.csv function.
     var chartGroup = svg.append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
     d3.csv("assets/data/data.csv").then(function(demoData, err) {
@@ -207,7 +207,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, textGroup) {
             .classed("inactive", true)
             .text("Household Income (Median)");
         
-            // Now add y labels group and labels.
+// Now add y labels group and labels.
         var yLabelsGroup = chartGroup.append("g")
             .attr("transform", "rotate(-90)");
         var healthcareLabel = yLabelsGroup.append("text")
