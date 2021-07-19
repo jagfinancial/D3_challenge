@@ -1,5 +1,5 @@
 // @TODO: YOUR CODE HERE!
-// Set default axes
+// Set Axis
 var chosenXAxis = "poverty";
 var chosenYAxis = "healthcare";
 
