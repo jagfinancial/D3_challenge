@@ -1,4 +1,8 @@
 // @TODO: YOUR CODE HERE!
+// Create a scatter plot between two of the data variables such as Healthcare vs. Poverty or Smokers vs. Age
+// D3 techniques we taught you in class, create a scatter plot that represents each state with circle elements.
+// You'll code this graphic in the app.js file of your homework directory.
+
 // Set up a chart
 var chosenXAxis = "poverty";
 var chosenYAxis = "obesity";
@@ -131,7 +135,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, textGroup) {
     .attr("width", svgWidth)
     .attr("height", svgHeight);
     
-    // Import data from an external CSV file
+    // Pull in the data from data.csv by using the d3.csv function.
     var chartGroup = svg.append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
     d3.csv("assets/data/data.csv").then(function(demoData, err) {
